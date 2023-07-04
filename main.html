@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>展示Markdown文件</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="content"></div>
+
+    <script>
+      // 使用JavaScript读取Markdown文件
+      fetch('mainpages.md')
+        .then((response) => response.text())
+        .then((data) => {
+          // 将Markdown内容转换为HTML
+          const converter = new showdown.Converter();
+          const html = converter.makeHtml(data);
+
+          // 在页面上展示HTML内容
+          const contentDiv = document.getElementById('content');
+          contentDiv.innerHTML = html;
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
